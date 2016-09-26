@@ -5,6 +5,7 @@ public class adjacencyRepresentation {
     int[][] adjacencyMatrix;
     String[] namesMapping;
     int[] visitedNodes;
+    String visitedEdges=""; //keep a list of the visited edges in order
 
     public adjacencyRepresentation(String[] friends) {
         namesMapping = new String[friends.length];
@@ -20,6 +21,23 @@ public class adjacencyRepresentation {
                 adjacencyMatrix[commonFriend][addNameMapping(arr[j])] = 1;
             }
         }
+
+        if (!checkIsUndirected()) try {
+            throw new GraphIsNotUndirected("Attention, the graph you provided in not undirected!");
+        } catch (GraphIsNotUndirected graphIsNotUndirected) {
+            graphIsNotUndirected.printStackTrace();
+        }
+    }
+
+    private Boolean checkIsUndirected() {
+        for (int i = 0; i < adjacencyMatrix.length; i++) {
+            for (int j = i; j < adjacencyMatrix.length; j++) {
+                if (adjacencyMatrix[i][j] != adjacencyMatrix[j][i]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     int addNameMapping(String name){
@@ -74,15 +92,26 @@ public class adjacencyRepresentation {
                 System.out.print("Considering edge: " +node+ "->" +j+ "... ");
                 if (visitedNodes[j] == 0){
                     System.out.println("Edge is valid, continuing recursion");
+                    visitedEdges += node + "-" + j + ",";
                     DFS(j);
+                    System.out.println("back from recursion");
                 } else{
-                    System.out.println("Edge is NOT valid, exiting recursion");
+                    System.out.println("Edge is NOT valid");
                 }
-                System.out.println("+++++++++++++++++++++++++");
+                System.out.println("+++++++");
             }
         }
         visitedNodes[node] = 2;
 
+    }
+
+
+
+    public class GraphIsNotUndirected extends Exception {
+        public GraphIsNotUndirected() { super(); }
+        public GraphIsNotUndirected(String message) { super(message); }
+        public GraphIsNotUndirected(String message, Throwable cause) { super(message, cause); }
+        public GraphIsNotUndirected(Throwable cause) { super(cause); }
     }
 
 }
