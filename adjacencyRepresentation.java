@@ -1,15 +1,15 @@
 package com.company;
 
 
-public class adjacencyRepresentation {
+public class AdjacencyRepresentation {
     int[][] adjacencyMatrix;
     String[] namesMapping;
     int[] visitedNodes;
     String visitedEdges=""; //keep a list of the visited edges in order
 
-    public adjacencyRepresentation(String[] friends) {
+    public AdjacencyRepresentation(String[] friends) {
         namesMapping = new String[friends.length];
-        visitedNodes = new int[namesMapping.length]; //il folosesc in PARCURGE_GRAF_DFS
+        visitedNodes = new int[namesMapping.length]; //il folosesc in parcurgeGrafDfs
         adjacencyMatrix = new int[friends.length][friends.length];
 
         for (int i = 0; i < friends.length; i++) {
@@ -69,12 +69,11 @@ public class adjacencyRepresentation {
     }
 
 
-    void PARCURGE_GRAF_DFS(){
-//        int unvisitedNode = getUnvisitedNode();
+    void parcurgeGrafDfs(){
         int g = 0;
         while (getUnvisitedNode() !=-1){
             System.out.println("Graf conex " + ++g);
-            DFS(getUnvisitedNode());
+            dfs(getUnvisitedNode());
         }
     }
 
@@ -84,7 +83,7 @@ public class adjacencyRepresentation {
         }
         return -1; //nu am noduri nevizitate
     }
-    void DFS(int node){
+    void dfs(int node){
         visitedNodes[node] = 1;
         System.out.println("I've just visited node: " + node);
         for (int j=0; j<visitedNodes.length; j++){
@@ -93,7 +92,7 @@ public class adjacencyRepresentation {
                 if (visitedNodes[j] == 0){
                     System.out.println("Edge is valid, continuing recursion");
                     visitedEdges += node + "-" + j + ",";
-                    DFS(j);
+                    dfs(j);
                     System.out.println("back from recursion");
                 } else{
                     System.out.println("Edge is NOT valid");

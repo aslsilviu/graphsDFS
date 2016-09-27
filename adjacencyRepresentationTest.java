@@ -7,20 +7,20 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 
-public class adjacencyRepresentationTest {
+public class AdjacencyRepresentationTest {
     String[] friends = {"alb ken ber","ken alb ber", "ber alb ken eme oak", "eme ber oak", "oak eme ber pie", "pie oak"};
 
     @org.junit.Test
     public void addNameMapping() throws Exception {
         String[] expectedMapping = {"alb", "ken", "ber", "eme", "oak", "pie"};
-        adjacencyRepresentation matrix = new adjacencyRepresentation(friends);
+        AdjacencyRepresentation matrix = new AdjacencyRepresentation(friends);
         Assert.assertTrue(Arrays.equals(matrix.namesMapping, expectedMapping));
     }
 
     @org.junit.Test
-    public void PARCURGE_GRAF_DFS() throws Exception {
-        adjacencyRepresentation matrix = new adjacencyRepresentation(friends);
-        matrix.PARCURGE_GRAF_DFS();
+    public void parcurgeGrafDfs() throws Exception {
+        AdjacencyRepresentation matrix = new AdjacencyRepresentation(friends);
+        matrix.parcurgeGrafDfs();
         assertEquals("The edges are not visited in the expected order", "0-1,1-2,2-3,3-4,4-5,", matrix.visitedEdges);
     }
 
@@ -38,7 +38,7 @@ public class adjacencyRepresentationTest {
             {0, 0, 1, 1, 0, 1},
             {0, 0, 0, 0, 1, 0}
             };
-        adjacencyRepresentation matrix = new adjacencyRepresentation(friends);
+        AdjacencyRepresentation matrix = new AdjacencyRepresentation(friends);
 
         Assert.assertTrue(Arrays.deepEquals(matrix.adjacencyMatrix, knownAdjacenyRep));
 //        System.out.println(Arrays.deepEquals(matrix.adjacencyMatrix, knownAdjacenyRep));

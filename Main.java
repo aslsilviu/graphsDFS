@@ -21,9 +21,9 @@ public class Main {
 
         System.out.println(Arrays.toString(friends));
 
-        adjacencyRepresentation matrix = new adjacencyRepresentation(friends);
+        AdjacencyRepresentation matrix = new AdjacencyRepresentation(friends);
         matrix.printMatrix();
-        matrix.PARCURGE_GRAF_DFS();
+        matrix.parcurgeGrafDfs();
 
     }
 }
