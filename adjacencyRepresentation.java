@@ -1,6 +1,9 @@
 package com.company;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class AdjacencyRepresentation {
     int[][] adjacencyMatrix;
     String[] namesMapping;
@@ -68,7 +71,7 @@ public class AdjacencyRepresentation {
         }
     }
 
-
+// DFS
     void parcurgeGrafDfs(){
         int g = 0;
         while (getUnvisitedNode() !=-1){
@@ -104,7 +107,25 @@ public class AdjacencyRepresentation {
 
     }
 
+//BFS
+    void parcurgeGrafBfs(){
+        int g = 0;
+        while (getUnvisitedNode() !=-1){
+            System.out.println("Graf conex " + ++g);
+            bfs(getUnvisitedNode());
+        }
 
+    }
+    void bfs(int node){
+        int nodeFromQueue;
+        Queue<Integer> C = new LinkedList<>();
+        C.add(node);
+        visitedNodes[node] = 1;
+        while(!C.isEmpty()){
+            nodeFromQueue = C.remove();
+            
+        }
+    }
 
     public class GraphIsNotUndirected extends Exception {
         public GraphIsNotUndirected() { super(); }
