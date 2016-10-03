@@ -13,12 +13,12 @@ public class OneToOneRepresentation {
         public Person(String[] frArray){
             name = frArray[0]; //first name from list is the main node, the rest are its friends
             for (int i = 1; i < frArray.length; i++) {
-                Person fr = new Person()
+//                Person fr = new Person();
 
             }
         }
 
-        addFriend(Person friend){
+        void addFriend(Person friend){
             friends.add(friend);
         }
     }
